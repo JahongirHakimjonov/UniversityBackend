@@ -1,14 +1,12 @@
-from django.contrib import admin
+from django.contrib.auth import admin
 
 from apps.users.forms.users import CustomUserCreationForm
-from apps.users.models import CustomUser
 
 
-@admin.register(CustomUser)
-class CustomUserAdmin(admin.ModelAdmin):
+class CustomUserAdmin(admin.UserAdmin):
     add_form = CustomUserCreationForm
-    list_display = ["id", "phone", "first_name", "last_name", "email"]
-    search_fields = ["phone", "first_name", "last_name", "email"]
+    list_display = ["id", "phone", "first_name", "last_name"]
+    search_fields = ["phone", "first_name", "last_name"]
     fieldsets = (
         (None, {"fields": ("username", "phone", "password")}),
         (

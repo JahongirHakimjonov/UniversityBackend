@@ -1,45 +1,44 @@
-from django.contrib.auth.base_user import AbstractBaseUser
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import models as auth_models
 from django.db import models
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-
+from django.contrib.auth.models import Group, Permission
 from apps.shared.models import AbstractBaseModel
+from apps.users.managers.users import UserManager
 
 
-class CustomUser(AbstractUser, AbstractBaseModel):
-    email = models.EmailField(_('email address'), unique=True)
-    phone = models.CharField(max_length=15, blank=True)
-    username = models.CharField(max_length=150, unique=True)
-    first_name = models.CharField(max_length=150, blank=True)
-    last_name = models.CharField(max_length=150, blank=True)
-    date_joined = models.DateTimeField(default=timezone.now)
-    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
-    is_active = models.BooleanField(default=True)
+class User(auth_models.AbstractUser, AbstractBaseModel):
+    phone = models.CharField(max_length=255, unique=True)
+    username = models.CharField(max_length=255, null=True, blank=True)
+    USERNAME_FIELD = "phone"
+    objects = UserManager()
+
+    avatar = models.ImageField(upload_to="avatars/", null=True, blank=True)
 
     def __str__(self):
         return self.email
 
-    # Add related_name arguments to these fields
     groups = models.ManyToManyField(
-        'auth.Group',
+        Group,
+        verbose_name=_('groups'),
         blank=True,
         help_text=_(
-            'The groups this user belongs to. A user will get all permissions granted to each of their groups.'),
-        related_query_name="customuser",
-        related_name="customuser_set",  # new
-        verbose_name=_('groups')
+            'The groups this user belongs to. A user will get all permissions '
+            'granted to each of their groups.'
+        ),
+        related_name="custom_user_groups",
+        related_query_name="user",
     )
+
     user_permissions = models.ManyToManyField(
-        'auth.Permission',
+        Permission,
+        verbose_name=_('user permissions'),
         blank=True,
         help_text=_('Specific permissions for this user.'),
-        related_query_name="customuser",
-        related_name="customuser_set",  # new
-        verbose_name=_('user permissions')
+        related_name="custom_user_permissions",
+        related_query_name="user",
     )
 
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
-        db_table = 'users'
+        db_table = 'base_users'
