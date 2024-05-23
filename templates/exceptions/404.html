@@ -1,91 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
 
-<head>
+{% block body %}
+    <!DOCTYPE html>
+    <html lang="en">
 
-    <!-- META ============================================= -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content=""/>
-    <meta name="author" content=""/>
-    <meta name="robots" content=""/>
+    <head>
 
-    <!-- DESCRIPTION -->
-    <meta name="description" content="Chirchiq davlat pedagogika universiteti"/>
+        <!-- META ============================================= -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="keywords" content=""/>
+        <meta name="author" content=""/>
+        <meta name="robots" content=""/>
 
-    <!-- OG -->
-    <meta property="og:title" content="Chirchiq davlat pedagogika universiteti"/>
-    <meta property="og:description" content="Chirchiq davlat pedagogika universiteti"/>
-    <meta property="og:image" content="assets/images/chdpi.png"/>
-    <meta name="format-detection" content="telephone=+99870 716-68-05">
+        <!-- DESCRIPTION -->
+        <meta name="description" content="Chirchiq davlat pedagogika universiteti"/>
 
-    <!-- FAVICONS ICON ============================================= -->
-    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.png"/>
+        <!-- OG -->
+        <meta property="og:title" content="Chirchiq davlat pedagogika universiteti"/>
+        <meta property="og:description" content="Chirchiq davlat pedagogika universiteti"/>
+        <meta property="og:image" content="assets/images/chdpi.png"/>
+        <meta name="format-detection" content="telephone=+99870 716-68-05">
 
-    <!-- PAGE TITLE HERE ============================================= -->
-    <title>404</title>
+        <!-- FAVICONS ICON ============================================= -->
+        <link rel="icon" href="{% static '../assets/images/favicon.ico' %}" type="image/x-icon"/>
+        <link rel="shortcut icon" type="image/x-icon" href="{% static '../assets/images/favicon.png' %}"/>
 
-    <!-- MOBILE SPECIFIC ============================================= -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- PAGE TITLE HERE ============================================= -->
+        <title>404</title>
 
-    <!--[if lt IE 9]>
-    <script src="assets/js/html5shiv.min.js"></script>
-    <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
+        <!-- MOBILE SPECIFIC ============================================= -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- All PLUGINS CSS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/assets.css">
+        <!--[if lt IE 9]>
+        <script src="{% static 'assets/js/html5shiv.min.js' %}"></script>
+        <script src="{% static 'assets/js/respond.min.js' %}"></script>
+        <![endif]-->
 
-    <!-- TYPOGRAPHY ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/typography.css">
+        <!-- All PLUGINS CSS ============================================= -->
+        <link rel="stylesheet" type="text/css" href="{% static '../assets/css/assets.css' %}">
 
-    <!-- SHORTCODES ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/shortcodes/shortcodes.css">
+        <!-- TYPOGRAPHY ============================================= -->
+        <link rel="stylesheet" type="text/css" href="{% static '../assets/css/typography.css' %}">
 
-    <!-- STYLESHEETS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-    <link class="skin" rel="stylesheet" type="text/css" href="../assets/css/color/color-1.css">
-	
-</head>
-<body id="bg">
-<div class="page-wraper">
-	<div id="loading-icon-bx"></div>
-	<div class="account-form">
-		<div class="account-head" style="background-image:url(../assets/images/background/bg2.jpg);">
-			<a href="../index.html"><img src="../assets/images/chdpi_white.png" alt=""></a>
-		</div>
-		<div class="account-form-inner">
-			<div class="account-container">
-				<div class="error-page">
-					<h3>Ooopps :(</h3>
-					<h2 class="error-title">404</h2>
-					<h5>Siz qidirgan sahifa topilmadi.</h5>
-					<p>Siz qidirayotgan sahifa oʻchirilgan, nomi oʻzgartirilgan yoki vaqtincha mavjud boʻlmagan boʻlishi mumkin.</p>
-					<div class="">
-						<a href="../index.html" class="btn m-r5">Bosh sahifaga qaytish</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+        <!-- SHORTCODES ============================================= -->
+        <link rel="stylesheet" type="text/css" href="{% static '../assets/css/shortcodes/shortcodes.css' %}">
+
+        <!-- STYLESHEETS ============================================= -->
+        <link rel="stylesheet" type="text/css" href="{% static '../assets/css/style.css' %}">
+        <link class="skin" rel="stylesheet" type="text/css" href="{% static '../assets/css/color/color-1.css' %}">
+
+    </head>
+    <body id="bg">
+    <div class="page-wraper">
+        <div id="loading-icon-bx"></div>
+        <div class="account-form">
+            <div class="account-head" style="background-image:url(../assets/images/background/bg2.jpg);">
+                <a href="../index.html"><img src="{% static '../assets/images/chdpi_white.png' %}" alt=""></a>
+            </div>
+            <div class="account-form-inner">
+                <div class="account-container">
+                    <div class="error-page">
+                        <h3>Ooopps :(</h3>
+                        <h2 class="error-title">404</h2>
+                        <h5>Siz qidirgan sahifa topilmadi.</h5>
+                        <p>Siz qidirayotgan sahifa oʻchirilgan, nomi oʻzgartirilgan yoki vaqtincha mavjud boʻlmagan
+                            boʻlishi mumkin.</p>
+                        <div class="">
+                            <a href="../index.html" class="btn m-r5">Bosh sahifaga qaytish</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 <!-- External JavaScripts -->
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/vendors/bootstrap/js/popper.min.js"></script>
-<script src="../assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-<script src="../assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
-<script src="../assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
-<script src="../assets/vendors/magnific-popup/magnific-popup.js"></script>
-<script src="../assets/vendors/counter/waypoints-min.js"></script>
-<script src="../assets/vendors/counter/counterup.min.js"></script>
-<script src="../assets/vendors/imagesloaded/imagesloaded.js"></script>
-<script src="../assets/vendors/masonry/masonry.js"></script>
-<script src="../assets/vendors/masonry/filter.js"></script>
-<script src="../assets/vendors/owl-carousel/owl.carousel.js"></script>
-<script src="../assets/js/functions.js"></script>
-<script src="../assets/js/contact.js"></script>
-<script src='../assets/vendors/switcher/switcher.js'></script>
+<script src="{% static '../assets/js/jquery.min.js' %}"></script>
+<script src="{% static '../assets/vendors/bootstrap/js/popper.min.js' %}"></script>
+<script src="{% static '../assets/vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static '../assets/vendors/bootstrap-select/bootstrap-select.min.js' %}"></script>
+<script src="{% static '../assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js' %}"></script>
+<script src="{% static '../assets/vendors/magnific-popup/magnific-popup.js' %}"></script>
+<script src="{% static '../assets/vendors/counter/waypoints-min.js' %}"></script>
+<script src="{% static '../assets/vendors/counter/counterup.min.js' %}"></script>
+<script src="{% static '../assets/vendors/imagesloaded/imagesloaded.js' %}"></script>
+<script src="{% static '../assets/vendors/masonry/masonry.js' %}"></script>
+<script src="{% static '../assets/vendors/masonry/filter.js' %}"></script>
+<script src="{% static '../assets/vendors/owl-carousel/owl.carousel.js' %}"></script>
+<script src="{% static '../assets/js/functions.js' %}"></script>
+<script src="{% static '../assets/js/contact.js' %}"></script>
+<script src='{% static '../assets/vendors/switcher/switcher.js' %}'></script>
 </body>
 
 </html>
