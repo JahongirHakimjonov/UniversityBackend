@@ -54,8 +54,8 @@ services:
       context: .
       dockerfile: ./compose/nginx/Dockerfile
     ports:
-      - "80:80"
-      - "9443:443"
+      - "180:80"
+      - "1443:443"
     depends_on:
       - web
     volumes:
@@ -72,8 +72,8 @@ services:
     image: jwilder/nginx-proxy
     container_name: nginx-proxy
     ports:
-      - "80:80"
-      - "9443:443"
+      - "280:80"
+      - "2443:443"
     environment:
       - TRUST_DOWNSTREAM_PROXY=false
     volumes:
