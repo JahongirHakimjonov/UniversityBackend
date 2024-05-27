@@ -102,8 +102,6 @@ volumes:
   static_volume:
   postgres_data:
   media_volume:
-  /etc/acme.sh:
-  /usr/share/nginx/html:
 
 networks:
   webnet:
