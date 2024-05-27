@@ -34,20 +34,20 @@ services:
     networks:
       - webnet
 
-  #  bot:
-  #    build:
-  #      context: .
-  #      dockerfile: ./compose/django/Dockerfile
-  #    image: support_bot
-  #    command: python /app/Bot/main.py
-  #    volumes:
-  #      - .:/app
-  #    env_file:
-  #      - envs/.env
-  #    depends_on:
-  #      - db
-  #    networks:
-  #      - webnet
+#  bot:
+#    build:
+#      context: .
+#      dockerfile: ./compose/django/Dockerfile
+#    image: support_bot
+#    command: python /app/Bot/main.py
+#    volumes:
+#      - .:/app
+#    env_file:
+#      - envs/.env
+#    depends_on:
+#      - db
+#    networks:
+#      - webnet
 
   nginx:
     build:
@@ -74,6 +74,8 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      - TRUST_DOWNSTREAM_PROXY=false
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./nginx/certs:/etc/nginx/certs:ro
@@ -97,6 +99,7 @@ volumes:
   static_volume:
   postgres_data:
   media_volume:
+
 
 networks:
   webnet:
