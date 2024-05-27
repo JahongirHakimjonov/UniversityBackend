@@ -93,6 +93,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./nginx/certs:/etc/nginx/certs:rw
       - ./nginx/vhost.d:/etc/nginx/vhost.d:rw
+      - ./nginx/html:/usr/share/nginx/html:rw
+      - ./nginx/acme.sh:/etc/acme.sh:rw
     networks:
       - webnet
 
@@ -100,8 +102,8 @@ volumes:
   static_volume:
   postgres_data:
   media_volume:
-
+  /etc/acme.sh:
+  /usr/share/nginx/html:
 
 networks:
   webnet:
-    external: true
