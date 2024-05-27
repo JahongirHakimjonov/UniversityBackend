@@ -1,24 +1,22 @@
 from django.contrib import admin
 
 from apps.university.models import (
-    PtikStory, Gallery, Video, EducationSubjects, EducationSubjectsCategory, AcademicHours, EducationServices, News,
-    Projects, ScientificBase
+    PtikStory,
+    EducationSubjects,
+    EducationSubjectsCategory,
+    AcademicHours,
+    EducationServices,
+    News,
+    Projects,
+    ScientificBase,
+    Support,
+    Home,
 )
 
 
 @admin.register(PtikStory)
 class PtikStoryAdmin(admin.ModelAdmin):
     list_display = ("title",)
-
-
-@admin.register(Gallery)
-class GalleryAdmin(admin.ModelAdmin):
-    list_display = ("name", "description", "image")
-
-
-@admin.register(Video)
-class VideoAdmin(admin.ModelAdmin):
-    list_display = ("title", "description", "video")
 
 
 @admin.register(EducationSubjects)
@@ -43,22 +41,58 @@ class AcademicHoursAdmin(admin.ModelAdmin):
 @admin.register(EducationServices)
 class EducationServicesAdmin(admin.ModelAdmin):
     list_display = ("title", "short_title", "description", "short_description", "image")
-    search_fields = ("title", "short_title", "description", "short_description", "image")
+    search_fields = (
+        "title",
+        "short_title",
+        "description",
+        "short_description",
+        "image",
+    )
 
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     list_display = ("title", "short_title", "description", "short_description", "image")
-    search_fields = ("title", "short_title", "description", "short_description", "image")
+    search_fields = (
+        "title",
+        "short_title",
+        "description",
+        "short_description",
+        "image",
+    )
 
 
 @admin.register(Projects)
 class ProjectsAdmin(admin.ModelAdmin):
     list_display = ("title", "short_title", "description", "short_description", "image")
-    search_fields = ("title", "short_title", "description", "short_description", "image")
+    search_fields = (
+        "title",
+        "short_title",
+        "description",
+        "short_description",
+        "image",
+    )
 
 
 @admin.register(ScientificBase)
 class ScientificBaseAdmin(admin.ModelAdmin):
     list_display = ("title", "short_title", "description", "short_description", "image")
-    search_fields = ("title", "short_title", "description", "short_description", "image")
+    search_fields = (
+        "title",
+        "short_title",
+        "description",
+        "short_description",
+        "image",
+    )
+
+
+@admin.register(Support)
+class SupportAdmin(admin.ModelAdmin):
+    list_display = ("full_name", "email", "phone", "subject", "message")
+    search_fields = ("full_name", "email", "phone", "subject", "message")
+
+
+@admin.register(Home)
+class HomeAdmin(admin.ModelAdmin):
+    list_display = ("name", "title", "subtitle", "phone", "email")
+    search_fields = ("name", "title", "subtitle", "phone", "email")

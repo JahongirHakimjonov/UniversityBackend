@@ -19,11 +19,11 @@ class User(auth_models.AbstractUser, AbstractBaseModel):
 
     groups = models.ManyToManyField(
         Group,
-        verbose_name=_('groups'),
+        verbose_name=_("groups"),
         blank=True,
         help_text=_(
-            'The groups this user belongs to. A user will get all permissions '
-            'granted to each of their groups.'
+            "The groups this user belongs to. A user will get all permissions "
+            "granted to each of their groups."
         ),
         related_name="custom_user_groups",
         related_query_name="user",
@@ -31,14 +31,14 @@ class User(auth_models.AbstractUser, AbstractBaseModel):
 
     user_permissions = models.ManyToManyField(
         Permission,
-        verbose_name=_('user permissions'),
+        verbose_name=_("user permissions"),
         blank=True,
-        help_text=_('Specific permissions for this user.'),
+        help_text=_("Specific permissions for this user."),
         related_name="custom_user_permissions",
         related_query_name="user",
     )
 
     class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
-        db_table = 'base_users'
+        verbose_name = _("user")
+        verbose_name_plural = _("users")
+        db_table = "base_users"

@@ -17,6 +17,8 @@ services:
       - envs/.env
     depends_on:
       - db
+    networks:
+      - webnet
 
   db:
     image: postgres:15-alpine
@@ -29,19 +31,23 @@ services:
       - POSTGRES_PASSWORD=1253
     ports:
       - "5432:5432"
+    networks:
+      - webnet
 
-#  bot:
-#    build:
-#      context: .
-#      dockerfile: ./compose/django/Dockerfile
-#    image: support_bot
-#    command: python /app/Bot/main.py
-#    volumes:
-#      - .:/app
-#    env_file:
-#      - envs/.env
-#    depends_on:
-#      - db
+  #  bot:
+  #    build:
+  #      context: .
+  #      dockerfile: ./compose/django/Dockerfile
+  #    image: support_bot
+  #    command: python /app/Bot/main.py
+  #    volumes:
+  #      - .:/app
+  #    env_file:
+  #      - envs/.env
+  #    depends_on:
+  #      - db
+  #    networks:
+  #      - webnet
 
   nginx:
     build:
@@ -55,12 +61,43 @@ services:
     volumes:
       - static_volume:/app/staticfiles
       - media_volume:/app/media
+    networks:
+      - webnet
     logging:
       options:
         max-size: '10m'
         max-file: '3'
 
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+      - ./nginx/vhost.d:/etc/nginx/vhost.d
+      - ./nginx/html:/usr/share/nginx/html
+    networks:
+      - webnet
+
+  letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: nginx-letsencrypt
+    environment:
+      - NGINX_PROXY_CONTAINER=nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./nginx/certs:/etc/nginx/certs:rw
+    networks:
+      - webnet
+
 volumes:
   static_volume:
   postgres_data:
   media_volume:
+
+networks:
+  webnet:
+    external: true

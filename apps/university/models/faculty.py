@@ -13,7 +13,9 @@ class Faculty(AbstractBaseModel):
     email = models.EmailField(_("Email"), blank=True, null=True)
     address = models.TextField(_("Address"), blank=True, null=True)
     dekan = models.CharField(_("Dekan"), max_length=255, blank=True, null=True)
-    dekan_photo = models.ImageField(_("Dekan Photo"), upload_to="faculty/", blank=True, null=True)
+    dekan_photo = models.ImageField(
+        _("Dekan Photo"), upload_to="faculty/", blank=True, null=True
+    )
 
     def __str__(self):
         return self.name

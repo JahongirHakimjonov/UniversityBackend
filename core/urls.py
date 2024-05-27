@@ -9,7 +9,7 @@ urlpatterns = i18n_patterns(
     path("admin/", admin.site.urls),
     path("", include("apps.university.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
-    path('ckeditor5/', include('django_ckeditor_5.urls')),
+    path("ckeditor5/", include("django_ckeditor_5.urls")),
 )
 
 if settings.DEBUG:

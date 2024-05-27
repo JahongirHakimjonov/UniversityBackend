@@ -2,11 +2,9 @@ from .academic_hours import *  # noqa
 from .education_subjects import *  # noqa
 from .education_services import *  # noqa
 from .faculty import *  # noqa
-from .gallery import *  # noqa
 from .home import *  # noqa
 from .news import *  # noqa
 from .projects import *  # noqa
 from .ptik_story import *  # noqa
 from .scientific_base import *  # noqa
 from .support import *  # noqa
-from .video import *  # noqa
