@@ -55,7 +55,7 @@ services:
       dockerfile: ./compose/nginx/Dockerfile
     ports:
       - "80:80"
-      - "443:443"
+      - "8443:443"
     depends_on:
       - web
     volumes:
@@ -73,7 +73,7 @@ services:
     container_name: nginx-proxy
     ports:
       - "80:80"
-      - "443:443"
+      - "8443:443"
     environment:
       - TRUST_DOWNSTREAM_PROXY=false
     volumes:
