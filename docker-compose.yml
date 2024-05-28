@@ -17,6 +17,8 @@ services:
       - envs/.env
     depends_on:
       - db
+    networks:
+      - my_network
 
   db:
     image: postgres:15-alpine
@@ -28,15 +30,17 @@ services:
       - POSTGRES_DB=university
       - POSTGRES_PASSWORD=1253
     ports:
-      - "5437:5432"
+      - "5432:5432"
+    networks:
+      - my_network
 
   nginx:
     build:
       context: .
       dockerfile: ./compose/nginx/Dockerfile
     ports:
-      - "87:80"
-      - "447:443"
+      - "80:80"
+      - "443:443"
     depends_on:
       - web
     volumes:
@@ -46,8 +50,14 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    networks:
+      - my_network
 
 volumes:
   static_volume:
   postgres_data:
   media_volume:
+
+networks:
+  my_network:
+    driver: bridge
