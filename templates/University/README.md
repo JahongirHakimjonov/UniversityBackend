@@ -1,2 +1,0 @@
-# UniversityFrontend
-University

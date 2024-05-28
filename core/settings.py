@@ -1,7 +1,8 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv, find_dotenv
+
 from django.utils.translation import gettext_lazy as _
+from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv("envs/.env"))
 
@@ -9,30 +10,46 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = True
+DEBUG = os.getenv("DEBUG")
+if DEBUG is not None:
+    DEBUG = DEBUG.lower() in ['true', '1']
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
+CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS").split(",")
 
-INSTALLED_APPS = [
+THIRD_PARTY_APPS = [
     "jazzmin",
+    "modeltranslation",
+    "django_ckeditor_5",
+    "corsheaders",
+    "rosetta",
+]
+
+DEFAULT_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+]
+
+PROJECT_APPS = [
     "apps.shared.apps.SharedConfig",
     "apps.users.apps.UsersConfig",
     "apps.resources.apps.ResourcesConfig",
     "apps.university.apps.UniversityConfig",
-    "modeltranslation",
-    "django_ckeditor_5",
 ]
+
+INSTALLED_APPS = THIRD_PARTY_APPS + DEFAULT_APPS + PROJECT_APPS  # noqa
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -131,6 +148,8 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = str(BASE_DIR.joinpath("media"))
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 JAZZMIN_SETTINGS = {
     "site_title": "University Admin",
